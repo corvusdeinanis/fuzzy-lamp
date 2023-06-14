@@ -11,29 +11,6 @@ from babel.dates import format_date
 from dateutil import parser
 
 
-def obsidian_graph():
-    """Generates a graph of the Obsidian vault."""
-    # pylint: disable=import-outside-toplevel
-    import obsidiantools.api as otools
-    # pylint: disable=import-outside-toplevel``
-    from pyvis.network import Network
-    log = logging.getLogger("mkdocs.plugins." + __name__)
-    log.info("[OBSIDIAN GRAPH] Generating graph...")
-    vault_path = Path(Path.cwd(), "docs")
-    vault = otools.Vault(vault_path).connect().gather()
-    graph = vault.graph
-    net = Network(
-        height="750px", width="750px", font_color="#7c7c7c", bgcolor="transparent"
-    )
-    net.from_nx(graph)
-    try:
-        net.save_graph(str(Path.cwd() / "docs" / "assets" / "graph.html"))
-    except OSError:
-        pass
-    shutil.rmtree(Path.cwd() / "lib")
-    log.info("[OBSIDIAN GRAPH] Graph generated!")
-    return ""
-
 def get_last_part_URL(url):
     """Get the last part of an URL.
 

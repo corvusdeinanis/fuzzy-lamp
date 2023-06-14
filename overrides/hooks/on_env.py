@@ -152,8 +152,6 @@ def value_in_frontmatter(key, metadata):
 
 def on_env(env, config, files, **kwargs):
 
-    if config["extra"].get("generate_graph", True):
-        obsidian_graph()
     env.filters["convert_time"] = time_time
     env.filters["iso_time"] = time_to_iso
     env.filters["time_todatetime"] = time_todatetime
